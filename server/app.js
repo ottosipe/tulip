@@ -21,5 +21,5 @@ app.get('/db', router.db);
 
 // start the server
 http.createServer(app).listen(app.get('port'), function(){
-  console.log(("Express server listening on port " + app.get('port')).green);
+  console.log(("Express server listening on port " + app.get('port')).rainbow);
 });
