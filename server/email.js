@@ -19,7 +19,8 @@ exports.send = function sendMail(user, temp, cb) {
     });
 
     var opts = {
-        from: "This Website <email@domain.com>", // sender address
+        from: "Tulip Noir <no-reply@tulipnoircafe.com>", // sender address
+        //replyTo: "dina@tulipnoircafe.com",
         to: user.name+" <"+user.email+">", // list of receivers
         subject: "Testing...", // Subject line
         html: html, // html body

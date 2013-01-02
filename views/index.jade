@@ -1,5 +1,45 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	.container
+		.header
+			a.logo(href="/")
+				img(src="img/logo.png")
+		
+		.about
+			.nav.row-fluid 
+				//a.navlink.active(href="#home") home
+				a.navlink(href="#menus") menus
+				a.navlink(href="#staff") staff
+				a.navlink(href="#story") story
+				a.navlink(href="#info") info
+		
+			.main
+				#home.tab
+					include home
+				#menus.tab.hide
+					include menus
+				#staff.tab.hide
+					include staff
+				#story.tab.hide
+					include story
+				#info.tab.hide
+					include info
+				#feedback.tab.hide
+					include feedback
+				#careers.tab.hide
+					include careers
+				#catering.tab.hide
+					include catering
+
+			
+			include ticker
+			hr
+			.foot
+				a.navlink(href="http://fb.com/tulipnoircafe", data-external="true", target="_blank") facebook
+				a.navlink(href="http://blog.tulipnoircafe.com", data-external="true", target="_blank") blog
+				|  | 
+				a.navlink(href="#feedback") feedback
+				a.navlink(href="#careers") careers
+				a.navlink(href="#catering") catering
+

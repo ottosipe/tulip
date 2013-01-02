@@ -1,7 +1,146 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: Josefin_Sans;
+  src: url('/../fonts/Josefin_Sans/JosefinSans-Regular.ttf');
 }
-a {
-  color: #00B7FF;
+body {
+  font: 1.3em Josefin_Sans, Helvetica, Arial, sans-serif;
+  background: url("/img/texture.png") repeat center;
+  padding: 10px;
+}
+a:hover {
+  color: #5a5a5a;
+  text-decoration: none;
+}
+.social {
+  margin-bottom: 20px;
+}
+.social img:hover {
+  -webkit-filter: grayscale(1) opacity(0.8);
+}
+.title {
+  font-weight: bold;
+}
+.info {
+  padding-left: 10px;
+}
+.ticker {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 10px;
+  margin-bottom: 0px;
+}
+.ticker li {
+  margin: 10px;
+  display: inline;
+}
+.ticker img {
+  max-height: 100px;
+}
+.ticker img:hover {
+  border-left: 3px black solid;
+  margin-left: -3px;
+}
+.container {
+  max-width: 900px;
+}
+.main {
+  min-height: 300px;
+  overflow: auto;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+.center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.center h4 {
+  margin-top: -10px;
+}
+.nav {
+  margin-top: 20px;
+  width: 100%;
+  background: #d6e4bd;
+  text-align: center;
+}
+.navlink {
+  color: black;
+  font-size: 24px;
+  padding: 11px 15px 11px 15px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+}
+.navlink:hover,
+.navlink.active {
+  color: black;
+  border-top: 7px black solid;
+  margin-top: -7px;
+  text-decoration: none;
+}
+.header {
+  margin-top: 25px;
+  text-align: center;
+}
+.foot {
+  padding-bottom: 30px;
+  text-align: right;
+}
+.button,
+input[type=button],
+input[type=submit],
+button {
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0.25em 0;
+  padding: 0.75em 1.5em;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  background-color: #d6e4bd;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+}
+.button:hover,
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=text]:hover,
+input[type=email]:hover,
+button:hover {
+  background-color: #5a5a5a;
+  color: #FFF;
+}
+button:disabled {
+  background-color: #5a5a5a;
+  color: #FFF;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #FFF;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #FFF;
+}
+input[type=text],
+input[type=email],
+textarea {
+  text-align: right;
+  border-radius: 0px;
+  background-color: #d6e4bd;
+  color: #FFF;
+  margin: 0.25em 0;
+  padding: 0.75em 1.3em;
+  width: 70%;
+  border: 0px;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+textarea {
+  border: 0px;
+  box-shadow: none;
+  outline: none;
 }

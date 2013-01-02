@@ -9,14 +9,25 @@ mongo.connect(function(msg) {
 });
 
 // main page
-exports.index = function(req, res){
-	res.render('index', { title: 'Otto Sipe' });
+exports.index = function index(req, res) {
+	res.render('index', { 
+		season: "winter 2013"
+	});
+};
+
+exports.menus = function menus(req, res) {
+	res.sendfile('menus/winter13/'+req.params.type+'.pdf');
+}
+
+// admin page
+exports.admin = function(req, res){
+	res.render('admin');
 };
 
 // email test
 exports.email = function(req, res){
 	email.send({ 
-		name: "Otto", 
+		name: "Otto",
 		email: "ottosipe@gmail.com"
 	} 
 	// templates defined in /server/email/
@@ -36,7 +47,3 @@ exports.db = function(req, res){
 	})
 };
 
-// admin page
-exports.admin = function(req, res){
-	res.send("<h3> You must be and admin! </h3>");
-};
