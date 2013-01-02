@@ -14,6 +14,10 @@ app.get('/', router.index);
 app.get('/menus/:type', router.menus);
 app.get('/admin', router.admin);
 
+// api
+app.get('/special', router.special);
+app.post('/special', router.addSpecial);
+
 // tests
 app.get('/email', router.email);
 app.get('/db', router.db);

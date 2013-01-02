@@ -1,5 +1,92 @@
 extends layout
 
 block content
+	.container
+		.header
+			a.logo(href="/")
+				img(src="img/logo.png")
+			h3 admin page
+	
+		.nav.row-fluid 
+			a.navlink.active(href="#specials") specials
+			a.navlink(href="#photos") photos
+			a.navlink(href="#menus") menus
+			a.navlink(href="#staff") staff
 
-	h3 hello world
+		.main
+			#specials.tab
+				h1 specials
+				form.specials
+					.row-fluid
+						.span5
+							textarea.width100(name="quote", placeholder="quote/announcement")
+							br
+							input.width100(type="text", name="person", placeholder="person")
+						.span7
+							ul.unstyled#editSpecs
+								li.spec(draggable="true")
+									input.input-small(type="text", name="type", placeholder="person")
+									input(type="text", name="desc", placeholder="person")
+									button.deleteSpec
+										i.icon-remove
+									button.moveSpec
+										i.icon-resize-vertical
+							button#newSpec
+								i.icon-plus
+					hr
+					button(type="submit") save all
+						
+			#photos.tab.hide
+				h1 photos
+				form.photo
+					input(type="file")		
+					
+					input(type="text")
+					button
+						i.icon-ok
+				hr
+				.photos.row-fluid
+					form.photo.span4
+						img(src="js/holder.js/100x100/text:img")
+						br
+						input(type="text")
+						br
+						button
+							i.icon-ok
+						button
+							i.icon-remove
+						hr
+
+					form.photo.span4
+						img(src="js/holder.js/100x100/text:img")
+						br
+						input(type="text")
+						br
+						button
+							i.icon-ok
+						button
+							i.icon-remove
+						hr
+
+					form.photo.span4
+						img(src="js/holder.js/100x100/text:img")
+						br
+						input(type="text")
+						br
+						button
+							i.icon-ok
+						button
+							i.icon-remove
+						hr
+
+			#menus.tab.hide
+				h1 menus
+				p not done yet	
+			#staff.tab.hide
+				h1 staff
+				p not done yet
+
+
+block scripts
+	script(src="/js/admin.js")
+	script(src="/js/jquery.sortable.min.js")

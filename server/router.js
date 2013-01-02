@@ -10,9 +10,18 @@ mongo.connect(function(msg) {
 
 // main page
 exports.index = function index(req, res) {
-	res.render('index', { 
-		season: "winter 2013"
-	});
+	mongo.db.collection("specials", function(err, collection){
+		collection.findOne({},{_id:0},function(err, docs){ 
+			if(err) throw err
+			var vars = {
+				season: "winter 2013",
+				special: docs
+			}
+			res.render('index', vars);
+			console.log(vars)
+		});
+	})
+	
 };
 
 exports.menus = function menus(req, res) {
@@ -22,6 +31,44 @@ exports.menus = function menus(req, res) {
 // admin page
 exports.admin = function(req, res){
 	res.render('admin');
+};
+
+// api
+exports.special = function(req, res) {
+	res.send("hi")
+};
+
+exports.addSpecial = function(req, res) {
+
+	console.log(req.body)
+	var obj = {
+		date: "january 2, 2013",
+		quote: req.body.quote,
+		person: req.body.person,
+		food: []
+	};
+
+	if(req.body.type != undefined && req.body.type instanceof Array) {
+
+		for(x in req.body.type) {
+			obj.food.push({
+				type: req.body.type[x], 
+				desc: req.body.desc[x]
+			})
+		}
+	} else {
+		obj.food.push({
+			type: req.body.type, 
+			desc: req.body.desc
+		})
+	}
+
+	mongo.db.collection("specials", function(err, collection){
+		collection.insert(obj, function(err, docs){
+			if(err) throw err
+			res.send("done")
+		});
+	})
 };
 
 // email test

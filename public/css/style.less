@@ -1,6 +1,6 @@
 
 
-@gray: rgb(90,90,90);
+@gray: rgb(200,200,200);
 @color: rgb(214,228,189);
 
 @font-face {
@@ -12,6 +12,10 @@ body {
 	font: 1.3em Josefin_Sans, Helvetica, Arial, sans-serif;
 	background: url("/img/texture.png") repeat center;
 	padding: 10px;
+}
+
+.width100 {
+	width: 90%;
 }
 
 a:hover {
@@ -112,6 +116,12 @@ a:hover {
 	text-align: right;
 }
 
+// admin
+
+.spec {
+	display: list-item;
+}
+
 // buttons and inputs
 .button, 
 input[type=button], 
@@ -128,9 +138,10 @@ button {
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
     background-color: @color;
-    color:#FFF;
+    color:black;
     cursor: pointer;
     display: inline-block;
+    margin-right: 5px;
 }
 
 .button:hover, 
@@ -140,7 +151,6 @@ input[type=text]:hover,
 input[type=email]:hover, 
 button:hover {
     background-color: @gray;
-    color:#FFF; 
 }
 
 button:disabled {
@@ -148,25 +158,26 @@ button:disabled {
     color:#FFF; 
 }
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #FFF;
+input::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder {
+  color: #888;
 }
 
-input:-moz-placeholder, textarea:-moz-placeholder {
-  color: #FFF;
+input:-moz-placeholder, 
+textarea:-moz-placeholder {
+  color: #888;
 }
 
 input[type=text],
 input[type=email],
 textarea {
-	text-align: right;
 	border-radius: 0px;
 	background-color: @color;
-	color:#FFF;
+	color:black;
     margin: 0.25em 0;
-    padding: 0.75em 1.3em;
-    width: 70%;
+    padding: 0.75em 0.75em;
     border:0px;
+    margin-right: 5px;
 }
 
 input[type=text]:focus,

@@ -7,8 +7,11 @@ body {
   background: url("/img/texture.png") repeat center;
   padding: 10px;
 }
+.width100 {
+  width: 90%;
+}
 a:hover {
-  color: #5a5a5a;
+  color: #c8c8c8;
   text-decoration: none;
 }
 .social {
@@ -85,6 +88,9 @@ a:hover {
   padding-bottom: 30px;
   text-align: right;
 }
+.spec {
+  display: list-item;
+}
 .button,
 input[type=button],
 input[type=submit],
@@ -100,9 +106,10 @@ button {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   background-color: #d6e4bd;
-  color: #FFF;
+  color: black;
   cursor: pointer;
   display: inline-block;
+  margin-right: 5px;
 }
 .button:hover,
 input[type=button]:hover,
@@ -110,32 +117,30 @@ input[type=submit]:hover,
 input[type=text]:hover,
 input[type=email]:hover,
 button:hover {
-  background-color: #5a5a5a;
-  color: #FFF;
+  background-color: #c8c8c8;
 }
 button:disabled {
-  background-color: #5a5a5a;
+  background-color: #c8c8c8;
   color: #FFF;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: #FFF;
+  color: #888;
 }
 input:-moz-placeholder,
 textarea:-moz-placeholder {
-  color: #FFF;
+  color: #888;
 }
 input[type=text],
 input[type=email],
 textarea {
-  text-align: right;
   border-radius: 0px;
   background-color: #d6e4bd;
-  color: #FFF;
+  color: black;
   margin: 0.25em 0;
-  padding: 0.75em 1.3em;
-  width: 70%;
+  padding: 0.75em 0.75em;
   border: 0px;
+  margin-right: 5px;
 }
 input[type=text]:focus,
 input[type=email]:focus,
