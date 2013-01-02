@@ -11,15 +11,23 @@ mongo.connect(function(msg) {
 // main page
 exports.index = function index(req, res) {
 	mongo.db.collection("specials", function(err, collection){
-		collection.findOne({},{_id:0},function(err, docs){ 
+
+		collection.find({}, {_id:0}, {safe:true})
+			.sort({_id: -1}).limit(1).each(function(err, doc){
 			if(err) throw err
 			var vars = {
 				season: "winter 2013",
-				special: docs
+				special: doc,
+				photos: []
+			}
+			for (var i = 31; i >= 0; i--) {
+				vars.photos.push("/photo/photo_"+i+".jpeg");
+				console.log("hi")
 			}
 			res.render('index', vars);
 			console.log(vars)
-		});
+		})
+
 	})
 	
 };

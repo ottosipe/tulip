@@ -91,6 +91,10 @@ a:hover {
 .spec {
   display: list-item;
 }
+.sortable-placeholder {
+  height: 40px;
+  border: 1px black dashed;
+}
 .button,
 input[type=button],
 input[type=submit],

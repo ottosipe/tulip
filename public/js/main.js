@@ -23,7 +23,7 @@ $(function(){
 
 
 function tick() {
-	$('.ticker li:first').animate( {"marginLeft": "-=220px"}, 8000, 'linear', function() {
+	$('.ticker li:first').animate( {"marginLeft": "-=120px"}, 5000, 'linear', function() {
 		$(this).detach().appendTo('.ticker').removeAttr('style');
 		tick();
 	});
