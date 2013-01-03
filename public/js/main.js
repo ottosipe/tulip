@@ -22,7 +22,7 @@ $(function(){
 	$.get("/special", function(data) {
 		console.log(data)
 		var special = specialTemp(data);
-		$("#specials").html(special);
+		$("#special").html(special);
 	})
 
 
