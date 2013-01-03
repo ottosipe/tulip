@@ -1,5 +1,6 @@
 var mongo = require("./database.js"),
 	email = require("./email.js");
+			require('date-utils');
 
 mongo.connect(function(msg) {
 	if(msg == null)
@@ -11,25 +12,19 @@ mongo.connect(function(msg) {
 // main page
 exports.index = function index(req, res) {
 	mongo.db.collection("specials", function(err, collection){
-
 		collection.find({}, {_id:0}, {safe:true})
 			.sort({_id: -1}).limit(1).each(function(err, doc){
 			if(err) throw err
 			var vars = {
-				season: "winter 2013",
 				special: doc,
 				photos: []
 			}
 			for (var i = 31; i >= 0; i--) {
 				vars.photos.push("/photo/photo_"+i+".jpeg");
-				console.log("hi")
 			}
 			res.render('index', vars);
-			console.log(vars)
-		})
-
-	})
-	
+		});
+	});
 };
 
 exports.menus = function menus(req, res) {
@@ -43,14 +38,18 @@ exports.admin = function(req, res){
 
 // api
 exports.special = function(req, res) {
-	res.send("hi")
+	mongo.db.collection("specials", function(err, collection){
+		collection.find({}, {_id:0}, {safe:true})
+			.sort({_id: -1}).limit(1).each(function(err, doc){
+			res.json(doc);
+		});
+	});
 };
 
 exports.addSpecial = function(req, res) {
-
-	console.log(req.body)
+	d = Date.today();
 	var obj = {
-		date: "january 2, 2013",
+		date: d.toFormat("DDDD, MMMM D"),
 		quote: req.body.quote,
 		person: req.body.person,
 		food: []
@@ -66,7 +65,7 @@ exports.addSpecial = function(req, res) {
 		}
 	} else {
 		obj.food.push({
-			type: req.body.type, 
+			type: req.body.type,
 			desc: req.body.desc
 		})
 	}
@@ -74,9 +73,9 @@ exports.addSpecial = function(req, res) {
 	mongo.db.collection("specials", function(err, collection){
 		collection.insert(obj, function(err, docs){
 			if(err) throw err
-			res.send("done")
+			res.send(docs)
 		});
-	})
+	});
 };
 
 // email test

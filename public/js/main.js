@@ -17,6 +17,15 @@ $(function(){
 		$(curTab).addClass("active");
 	});
 
+	// build specials
+	var specialTemp = _.template($("#specialTemp").html());
+	$.get("/special", function(data) {
+		console.log(data)
+		var special = specialTemp(data);
+		$("#specials").html(special);
+	})
+
+
 	// start ticker
 	tick();
 });

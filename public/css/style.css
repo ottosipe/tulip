@@ -51,6 +51,7 @@ a:hover {
   overflow: auto;
   padding: 0 15px;
   margin-bottom: 30px;
+  text-transform: lowercase;
 }
 .center {
   text-align: center;

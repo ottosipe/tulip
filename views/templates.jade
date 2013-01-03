@@ -1,0 +1,12 @@
+
+script#specialTemp(type="template")
+	h3 <%= date %>
+
+	blockquote <%= quote %> <% if(person) {  %> 
+		small <%= person %> <% } %>
+
+	blockquote <% for (x in food) { %>
+		.row-fluid
+			.span2.title <%= food[x].type+":" %>
+			.span10.info <%= food[x].desc %> 
+			<% } %>
