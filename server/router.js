@@ -11,20 +11,13 @@ mongo.connect(function(msg) {
 
 // main page
 exports.index = function index(req, res) {
-	mongo.db.collection("specials", function(err, collection){
-		collection.find({}, {_id:0}, {safe:true})
-			.sort({_id: -1}).limit(1).each(function(err, doc){
-			if(err) throw err
-			var vars = {
-				special: doc,
-				photos: []
-			}
-			for (var i = 31; i >= 0; i--) {
-				vars.photos.push("/photo/photo_"+i+".jpeg");
-			}
-			res.render('index', vars);
-		});
-	});
+	var vars = {
+		photos: []
+	}
+	for (var i = 31; i >= 0; i--) {
+		vars.photos.push("/photo/photo_"+i+".jpeg");
+	}
+	res.render('index', vars);
 };
 
 exports.menus = function menus(req, res) {
