@@ -8,21 +8,21 @@ block content
 		
 		.about
 			.nav.row-fluid 
-				//a.navlink.active(href="#home") home
+				//-a.navlink.active(href="#home") home
+				a.navlink(href="#story") story
 				a.navlink(href="#menus") menus
 				a.navlink(href="#staff") staff
-				a.navlink(href="#story") story
 				a.navlink(href="#info") info
 		
 			.main
 				#home.tab
 					include home
+				#story.tab.hide
+					include story
 				#menus.tab.hide
 					include menus
 				#staff.tab.hide
 					include staff
-				#story.tab.hide
-					include story
 				#info.tab.hide
 					include info
 				#feedback.tab.hide

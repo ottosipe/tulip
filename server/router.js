@@ -22,7 +22,7 @@ exports.index = function index(req, res) {
 };
 
 exports.menus = function menus(req, res) {
-	
+
   	res.setHeader('Content-Type', 'image/jpeg');
 	res.sendfile('menus/winter13/'+req.params.type+'.pdf', {maxAge:100000});
 }
@@ -53,18 +53,23 @@ exports.addSpecial = function(req, res) {
 
 	// reorganize for db
 	if(req.body.type != undefined && req.body.type instanceof Array) {
-
 		for(x in req.body.type) {
-			obj.food.push({
+			var item = {
 				type: req.body.type[x], 
 				desc: req.body.desc[x]
-			})
+			};
+			if (item.desc.length && item.type.length) {
+				obj.food.push(item);
+			}
 		}
 	} else {
-		obj.food.push({
-			type: req.body.type,
+		var item = {
+			type: req.body.type, 
 			desc: req.body.desc
-		})
+		};
+		if (item.desc.length && item.type.length) {
+			obj.food.push(item);
+		}
 	}
 
 	mongo.db.collection("specials", function(err, collection){
@@ -99,16 +104,10 @@ exports.photos = function(req, res) {
 exports.photo = function(req, res) {
 	// actually serve the photo here!!
 	
-
 	filestore.getFile('/photos/photo_'+req.params.id+'.jpeg', function(err, data){
 	 	data.on('data', function(data) { res.write(data); });
     	data.on('end', function(chunk) { res.end(); });
 	});
-
-	/*finder("photos", { id: parseInt(req.params.id) }, function(docs) {
-		if (docs.length) res.send(docs[0]);
-		else res.send({});
-	});*/
 };
 
 exports.addPhoto = function(req, res) {

@@ -14,5 +14,5 @@ script#specialTemp(type="template")
 
 script#photoTemp(type="template") <% for (x in photos) { %>
 	li 
-		img(src!="/photo/<%= photos[x].id %>")
+		img.thumb(src!="/photo/<%= photos[x].id %>")
 	<% } %>

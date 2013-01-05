@@ -11,10 +11,11 @@ config(app);
 
 // define API routes here
 app.get('/', router.index);
-app.get('/menus/:type', router.menus);
 app.get('/admin', router.admin);
 
 // api
+app.get('/menus/:type', router.menus);
+
 app.get('/special', router.special);
 app.post('/special', router.addSpecial);
 

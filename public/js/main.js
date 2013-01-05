@@ -31,7 +31,12 @@ $(function(){
 		var photos = photoTemp({ photos: data });
 		$(".ticker").html(photos);
 		
+		$(".thumb").click(function(){
+			console.log("big view on its way");
+		});
 	});
+
+	
 
 	// start ticker
 	setInterval(function() {
@@ -46,7 +51,7 @@ function tick() {
     var victim = Math.ceil(Math.random() * next); // number from 0 to  8
 
 	$('.ticker li:nth-child('+victim+')').fadeOut("slow",function() {
-		$(this).detach().appendTo('.ticker');
+		$(this).detach().appendTo('.ticker').show();
 		var that = $('.ticker li:nth-child('+next+')');
 		that.hide().detach().fadeIn("slow");
 		var replace = victim - 1;
