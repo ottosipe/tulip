@@ -43,6 +43,8 @@ $(function(){
 
 });
 
+
+
 var thumbWidth;
 function resize() {
 	var width = $('.ticker').width();
@@ -52,9 +54,14 @@ function resize() {
 	console.log(thumbWidth)
 	$(".thumb").css("max-height",thumbWidth+"px");
 }
+window.onresize = function(event) {
+    resize();
+}
+window.onorientationchange = function(event) {
+	resize();
+}
 
 function tick() {
-	resize();
 	var next = Math.ceil($('.ticker').width() / (thumbWidth));
     var victim = Math.ceil(Math.random() * next); // number from 0 to  8
 
