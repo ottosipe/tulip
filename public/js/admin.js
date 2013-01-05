@@ -16,9 +16,10 @@ $(function(){
 
 	$(".specials").submit(function(e) {
 		e.preventDefault();
-
+		var that = $(this);
   		$.post('/special', $(this).serialize(), function(data){
   			console.log(data)
+  			that.html('<h2 class="center">'+data+'</h2>')
   		});
-	})
+	});
 });

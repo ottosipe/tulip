@@ -72,10 +72,10 @@ exports.addSpecial = function(req, res) {
 		}
 	}
 
-	mongo.db.collection("specials", function(err, collection){
+  	mongo.db.collection("specials", function(err, collection){
 		collection.insert(obj, function(err, docs){
 			if(err) throw err
-			res.send(docs)
+			res.send("Added Successfully")
 		});
 	});
 };
