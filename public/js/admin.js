@@ -22,4 +22,13 @@ $(function(){
   			that.html('<h2 class="center">'+data+'</h2>')
   		});
 	});
+
+	var photoAdminTemp = _.template($("#photoAdminTemp").html());
+	$.get("/photos", function(data) {
+		console.log(data)
+		var photos = photoAdminTemp({ photos: data });
+		$("#photoAdmin").html(photos);
+		
+	});
+
 });

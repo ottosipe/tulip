@@ -91,6 +91,17 @@ a:hover {
 .spec {
   display: list-item;
 }
+.photoAdmin {
+  width: 150px;
+  display: inline;
+  margin-left: 30px;
+}
+.photoAdmin textarea {
+  width: 90%;
+}
+.photoAdmin img {
+  margin-bottom: 3px;
+}
 .sortable-placeholder {
   height: 40px;
   border: 1px black dashed;

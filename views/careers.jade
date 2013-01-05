@@ -1,2 +1,119 @@
 h1 careers
 p sorry this feature is not quite done
+//-form#jobapp
+    h4(align='left')
+        strong Personal info:
+      table(width='450', border='0')
+        tbody
+          tr
+            td
+              h4 full name:
+            td
+              h4
+                input#full_name.big(name='full_name', type='text', ondblclick='MM_setTextOfTextfield(\'full_name\',\'\',\'\')', value='first middle last', size='18', maxlength='50')
+            td
+              h4 social security:
+            td
+              h4
+                input#social.big(name='social', type='text', ondblclick='MM_setTextOfTextfield(\'social\',\'\',\'\')', value='xxx xx xxxx', size='18', maxlength='50')
+          tr
+            td
+              h4 e-mail
+            td
+              h4
+                input#your_email.big(name='your_email', type='text', ondblclick='MM_setTextOfTextfield(\'your_email\',\'\',\'\')', value='email@site.com', size='18', maxlength='50')
+            td
+              h4 phone:
+            td
+              h4
+                input#phone.big(name='phone', type='text', ondblclick='MM_setTextOfTextfield(\'your_email\',\'\',\'\')', value='xxx xxx-xxxx', size='18', maxlength='50')
+          tr
+            td
+              h4 street address:
+            td
+              h4
+                input#address.big(name='address', type='text', ondblclick='MM_setTextOfTextfield(\'address\',\'\',\'\')', value='xxxx street', size='18', maxlength='50')
+            td
+              h4 date of birth
+            td
+              h4
+                input#dob.big(name='dob', type='text', ondblclick='MM_setTextOfTextfield(\'dob\',\'\',\'\')', value='mm/dd/yyyy', size='18', maxlength='50')
+          tr
+            td
+              h4 city, state, zip
+            td
+              h4
+                input#address2.big(name='address2', type='text', ondblclick='MM_setTextOfTextfield(\'address2\',\'\',\'\')', value='city, st, xxxxx', size='18', maxlength='50')
+            td
+              h4  
+            td
+              h4  
+      h4(align='left')  
+      h4(align='left')
+        strong job info:
+      h4(align='left')
+        | desired position:
+        select.big(name='position')
+          option(value='-empty-')            
+          option(value='Management') management
+          option(value='Head Chef') head chef
+          option(value='Sous Chef') sous chef
+          option(value='Wait Staff') wait staff
+          option(value='Host') host
+          option(value='Dishwasher') dishwasher
+          option(value='Busser') busser
+        br
+      h4(align='left')
+        textarea#message2.big(name='message2', cols='44', rows='4', ondblclick='MM_setTextOfTextfield(\'message2\',\'\',\'\')') describe your experience working in a similar position
+      h4(align='left')
+        label(for='eligible')
+          br
+          strong how often would you like to work? 
+        label(for='eligible2')
+          br
+      h4
+        label
+          input#jobhours_0(type='radio', name='jobhours', value='full time')
+          | full time
+        br
+        label
+          input#jobhours_1(type='radio', name='jobhours', value='part time')
+          | part
+        | time
+        br
+        label
+          input#jobhours_2(type='radio', name='jobhours', value='temporary')
+          | temporary employment
+        br
+        strong
+          br
+          | about you:
+      h4(align='left')
+        textarea#message.big(name='message', cols='44', rows='4', ondblclick='MM_setTextOfTextfield(\'message\',\'\',\'\')')
+          | what do you think you will bring to tulip noir? (i.e. great attitude, dedication, innovation)
+      h4(align='left')  
+      h4(align='left')
+        label(for='file')
+          | please
+          strong submit a resume
+          | (yourname.pdf) be sure to include job-related
+          br
+          | experiences and references
+          | from past employers:
+      h4(align='left')
+        input#file(type='file', name='file')
+      h4(align='left')
+      h4(align='left')  
+      h4(align='left')
+        input#yes(type='checkbox', name='yes')
+        | i am a
+        label(for='yes')
+          strong u.s. citizen or certified to work
+          | in the u.s.
+          br
+          | and i
+          | possess a work permit. (work permit for minors only)
+      h4(align='left')
+        br
+        input#Apply(type='submit', name='Apply', value='Apply')
+      p(align='left')  

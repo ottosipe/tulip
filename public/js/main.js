@@ -30,13 +30,11 @@ $(function(){
 		console.log(data)
 		var photos = photoTemp({ photos: data });
 		$(".ticker").html(photos);
-		
+		resize();
 		$(".thumb").click(function(){
 			console.log("big view on its way");
 		});
 	});
-
-	
 
 	// start ticker
 	setInterval(function() {
@@ -45,9 +43,19 @@ $(function(){
 
 });
 
-function tick() {
+var thumbWidth;
+function resize() {
+	var width = $('.ticker').width();
+	thumbWidth = 111; // optimum 100 + 3(hover) + 8(margin)
+	var number = Math.round(width / thumbWidth) ;
+	thumbWidth = Math.round((width - (number-1)*11)/number - 3);
+	console.log(thumbWidth)
+	$(".thumb").css("max-height",thumbWidth+"px");
+}
 
-	var next = Math.ceil($('.ticker').width() / 120);
+function tick() {
+	resize();
+	var next = Math.ceil($('.ticker').width() / (thumbWidth));
     var victim = Math.ceil(Math.random() * next); // number from 0 to  8
 
 	$('.ticker li:nth-child('+victim+')').fadeOut("slow",function() {
