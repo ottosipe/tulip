@@ -18,6 +18,11 @@ app.get('/admin', router.admin);
 app.get('/special', router.special);
 app.post('/special', router.addSpecial);
 
+app.get('/photos', router.photos);
+app.get('/photo/:id', router.photo);
+app.post('/photo', router.addPhoto);
+
+
 // tests
 app.get('/email', router.email);
 app.get('/db', router.db);

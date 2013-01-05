@@ -10,3 +10,9 @@ script#specialTemp(type="template")
 			.span2.title <%= food[x].type+":" %>
 			.span10.info <%= food[x].desc %> 
 			<% } %>
+
+
+script#photoTemp(type="template") <% for (x in photos) { %>
+	li 
+		img(src!="/photo/<%= photos[x].id %>")
+	<% } %>

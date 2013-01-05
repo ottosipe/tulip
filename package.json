@@ -11,6 +11,7 @@
     "less-middleware": "*",
     "mongodb": "*",
     "nodemailer": "*",
-    "date-utils": "*"
+    "date-utils": "*",
+    "knox": "*"
   }
 }

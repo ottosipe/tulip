@@ -1,6 +1,13 @@
-var mongo = require("./database.js"),
-	email = require("./email.js");
-			require('date-utils');
+var mongo 		= require("./database.js"),
+	email 		= require("./email.js"),
+	knox 		= require("knox"),
+	date 		= require('date-utils');
+
+var filestore = knox.createClient({
+    key: 'AKIAICEJ3HEXPY5KB7OQ'
+  , secret: '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'
+  , bucket: 'tulipnoir'
+});
 
 mongo.connect(function(msg) {
 	if(msg == null)
@@ -11,17 +18,13 @@ mongo.connect(function(msg) {
 
 // main page
 exports.index = function index(req, res) {
-	var vars = {
-		photos: []
-	}
-	for (var i = 31; i >= 0; i--) {
-		vars.photos.push("/photo/photo_"+i+".jpeg");
-	}
-	res.render('index', vars);
+	res.render('index');
 };
 
 exports.menus = function menus(req, res) {
-	res.sendfile('menus/winter13/'+req.params.type+'.pdf');
+	
+  	res.setHeader('Content-Type', 'image/jpeg');
+	res.sendfile('menus/winter13/'+req.params.type+'.pdf', {maxAge:100000});
 }
 
 // admin page
@@ -48,6 +51,7 @@ exports.addSpecial = function(req, res) {
 		food: []
 	};
 
+	// reorganize for db
 	if(req.body.type != undefined && req.body.type instanceof Array) {
 
 		for(x in req.body.type) {
@@ -69,6 +73,46 @@ exports.addSpecial = function(req, res) {
 			res.send(docs)
 		});
 	});
+};
+
+exports.photos = function(req, res) {
+	/*mongo.db.collection("photos", function(err, collection){
+		for(var i = 0; i < 32; i++) {
+			(function(i){ 
+				var obj = {
+					id: i,
+					file: "photo_"+i+".jpg",
+					comment: "none"
+				}
+				collection.insert(obj, function(err, docs){
+					if(err) throw err
+					res.send(docs)
+				});
+			})(i);
+		}
+	});*/
+	mongo.finder("photos", {}, function(docs) {
+		res.send(docs);
+	});
+};
+
+exports.photo = function(req, res) {
+	// actually serve the photo here!!
+	
+
+	filestore.getFile('/photos/photo_'+req.params.id+'.jpeg', function(err, data){
+	 	data.on('data', function(data) { res.write(data); });
+    	data.on('end', function(chunk) { res.end(); });
+	});
+
+	/*finder("photos", { id: parseInt(req.params.id) }, function(docs) {
+		if (docs.length) res.send(docs[0]);
+		else res.send({});
+	});*/
+};
+
+exports.addPhoto = function(req, res) {
+
 };
 
 // email test
@@ -93,4 +137,5 @@ exports.db = function(req, res){
 		});
 	})
 };
+
 

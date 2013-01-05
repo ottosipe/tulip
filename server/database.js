@@ -16,4 +16,17 @@ var API = module.exports = exports;
 		});
 	};
 
+	// helpers
+	API.finder = function APIfinder(collectName, searchObj, cb) {
+	Database.collection(collectName, function(err, collection){
+		collection.find(searchObj, {_id:0}, {safe:true}).sort({_id: -1})
+			.toArray(function(err, docs){
+				if(err) throw err
+				cb(docs);
+		});
+	});
+}
+
+
 })(MongoDB);
+
