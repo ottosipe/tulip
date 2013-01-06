@@ -14,13 +14,13 @@ script#specialTemp(type="template")
 
 script#photoTemp(type="template") <% for (x in photos) { %>
 	li 
-		img.thumb(src!="/photo/<%= photos[x].id %>")
+		img.thumb(src!="/photo/<%= photos[x].id %>", data-toggle="modal", href="#big")
 	<% } %>
 
 script#photoAdminTemp(type="template") <% for (x in photos) { %>
 	form.photoAdmin.span2
 		.center
-			img.thumb(src!="/photo/<%= photos[x].id %>")
+			img.thumb(src!="/photo/<%= photos[x].id %>", data-toggle="modal", href="#big")
 			br
 			textarea(name="comment") <%= photos[x].comment %>
 			br

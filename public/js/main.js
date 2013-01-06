@@ -15,7 +15,7 @@ $(function(){
 		$(".ticker").html(photos);
 		resize();
 		$(".thumb").click(function(){
-			console.log("big view on its way");
+			$("#big img").attr("src", $(this).attr("src")+"/big")
 		});
 	});
 

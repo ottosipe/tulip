@@ -28,7 +28,9 @@ $(function(){
 		console.log(data)
 		var photos = photoAdminTemp({ photos: data });
 		$("#photoAdmin").html(photos);
-		
+		$(".thumb").click(function(){
+			$("#big img").attr("src", $(this).attr("src")+"/big")
+		});		
 	});
 
 });

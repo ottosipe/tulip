@@ -21,6 +21,7 @@ app.post('/special', router.addSpecial);
 
 app.get('/photos', router.photos);
 app.get('/photo/:id', router.photo);
+app.get('/photo/:id/big', router.photoBig);
 app.post('/photo', router.addPhoto);
 
 app.post('/feedback', router.feedback);

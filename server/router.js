@@ -110,6 +110,15 @@ exports.photo = function(req, res) {
 	});
 };
 
+exports.photoBig = function(req, res) {
+	// actually serve the photo here!!
+	res.setHeader('Content-Type', 'image/jpeg');
+	filestore.getFile('/photos/big/photo_'+req.params.id+'.jpeg', function(err, data){
+	 	data.on('data', function(data) { res.write(data); });
+    	data.on('end', function(chunk) { res.end(); });
+	});
+};
+
 exports.addPhoto = function(req, res) {
 
 };
