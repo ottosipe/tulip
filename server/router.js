@@ -23,8 +23,8 @@ exports.index = function index(req, res) {
 
 exports.menus = function menus(req, res) {
 
-  	res.setHeader('Content-Type', 'image/jpeg');
-	res.sendfile('menus/winter13/'+req.params.type+'.pdf', {maxAge:100000});
+  	res.setHeader('Content-Type', 'application/pdf');
+	res.sendfile('menus/winter13/'+req.params.type+'.pdf');
 }
 
 // admin page
@@ -103,7 +103,7 @@ exports.photos = function(req, res) {
 
 exports.photo = function(req, res) {
 	// actually serve the photo here!!
-	
+	res.setHeader('Content-Type', 'image/jpeg');
 	filestore.getFile('/photos/photo_'+req.params.id+'.jpeg', function(err, data){
 	 	data.on('data', function(data) { res.write(data); });
     	data.on('end', function(chunk) { res.end(); });
@@ -121,7 +121,7 @@ exports.feedback = function(req, res) {
 		reply: req.body.email
 	};
 	var info = req.body;
-	info.date = Date.today().toFormat("DDDD, MMMM D");
+	info.date = Date.today().toFormat("DDDD, MMMM D, YYYY");
 	email.send(to, info ,'feedback.jade', function(msg) { 
 		console.log(msg);
 		res.send("Thanks "+req.body.name+"! We value your opinion.")
