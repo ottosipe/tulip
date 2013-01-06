@@ -23,11 +23,7 @@ app.get('/photos', router.photos);
 app.get('/photo/:id', router.photo);
 app.post('/photo', router.addPhoto);
 
-
-// tests
-app.get('/email', router.email);
-app.get('/db', router.db);
-
+app.post('/feedback', router.feedback);
 
 // start the server
 http.createServer(app).listen(app.get('port'), function(){

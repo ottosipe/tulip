@@ -114,27 +114,21 @@ exports.addPhoto = function(req, res) {
 
 };
 
-// email test
-exports.email = function(req, res){
-	email.send({ 
-		name: "Otto",
-		email: "ottosipe@gmail.com"
-	} 
-	// templates defined in /server/email/
-	,'template.jade', function(msg) { 
+exports.feedback = function(req, res) {
+	var to = {
+		subject: "Feedback - Tulip Noir",
+		email: "ottosipe@gmail.com, dina@tulipnoircafe.com",
+		reply: req.body.email
+	};
+	var info = req.body;
+	info.date = Date.today().toFormat("DDDD, MMMM D");
+	email.send(to, info ,'feedback.jade', function(msg) { 
 		console.log(msg);
-		res.send(msg);
+		res.send("Thanks "+req.body.name+"! We value your opinion.")
+	});
+	mongo.db.collection("feedback", function(err, collection){
+		collection.insert(info, function(err, docs){
+			if(err) throw err
+		});
 	});
 };
-
-// db test
-exports.db = function(req, res){
-	mongo.db.collection("test", function(err, collection){
-		collection.insert({ msg: "hello world" }, function(err, docs){
-			if(err) throw err
-			res.send(docs);
-		});
-	})
-};
-
-

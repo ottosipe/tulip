@@ -1,5 +1,9 @@
 extends layout
 
+block scripts
+	script(src="/js/admin.js")
+	script(src="/js/jquery.sortable.min.js")
+		
 block content
 	.container
 		.header
@@ -56,6 +60,3 @@ block content
 				p not done yet
 
 
-block scripts
-	script(src="/js/admin.js")
-	script(src="/js/jquery.sortable.min.js")

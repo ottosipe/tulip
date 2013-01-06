@@ -19,13 +19,14 @@ script#photoTemp(type="template") <% for (x in photos) { %>
 
 script#photoAdminTemp(type="template") <% for (x in photos) { %>
 	form.photoAdmin.span2
-		img.thumb(src!="/photo/<%= photos[x].id %>")
-		br
-		textarea(name="comment") <%= photos[x].comment %>
-		br
-		button
-			i.icon-ok
-		button
-			i.icon-remove
-		hr
+		.center
+			img.thumb(src!="/photo/<%= photos[x].id %>")
+			br
+			textarea(name="comment") <%= photos[x].comment %>
+			br
+			button
+				i.icon-ok
+			button
+				i.icon-remove
+			hr
 	<% } %>

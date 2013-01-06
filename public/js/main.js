@@ -1,22 +1,5 @@
 $(function(){ 
-	var curTab;// = $(".navlink:first");
-	$(".navlink").click(function(e){
-		if ($(this).attr("data-external")) return;
-		
-		e.preventDefault();
-		$(".tab").hide();
-		curTab = this; // remeber if needed
-		$($(this).attr("href")).show();
-		$(".navlink").removeClass("active");
-		$(this).addClass("active");
-	});
-
-	$(".navlink").hover(function(e){ // hover in
-		$(".navlink").removeClass("active");
-	}, function(e){ // hover out
-		$(curTab).addClass("active");
-	});
-
+	
 	// build specials
 	var specialTemp = _.template($("#specialTemp").html());
 	$.get("/special", function(data) {
@@ -36,6 +19,14 @@ $(function(){
 		});
 	});
 
+	$(".feedback").submit(function(e){
+		e.preventDefault();
+		var that = $(this);
+		$.post("/feedback", $(this).serialize(), function(data){
+			that.html(data);
+		})
+	})
+
 	// start ticker
 	setInterval(function() {
 	  tick();
@@ -43,15 +34,13 @@ $(function(){
 
 });
 
-
-
 var thumbWidth;
 function resize() {
 	var width = $('.ticker').width();
 	thumbWidth = 111; // optimum 100 + 3(hover) + 8(margin)
 	var number = Math.round(width / thumbWidth) ;
 	thumbWidth = Math.round((width - (number-1)*11)/number - 3);
-	console.log(thumbWidth)
+	//console.log(thumbWidth)
 	$(".thumb").css("max-height",thumbWidth+"px");
 }
 window.onresize = function(event) {
