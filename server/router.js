@@ -1,7 +1,9 @@
 var mongo 		= require("./database.js"),
 	email 		= require("./email.js"),
+	photo 		= require("./photo.js"),
 	knox 		= require("knox"),
-	date 		= require('date-utils');
+	date 		= require('date-utils'),
+	fs 			= require('fs');
 
 var filestore = knox.createClient({
     key: 'AKIAICEJ3HEXPY5KB7OQ'
@@ -120,7 +122,12 @@ exports.photoBig = function(req, res) {
 };
 
 exports.addPhoto = function(req, res) {
-
+	console.log(req.body);
+    console.log(req.files);
+	p = new photo(mongo, req.body, function(msg) {
+		res.send(msg);
+	});
+	p.save();
 };
 
 exports.feedback = function(req, res) {
