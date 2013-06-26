@@ -3,13 +3,10 @@ var mongo 		= require("./database.js"),
 	photo 		= require("./photo.js"),
 	knox 		= require("knox"),
 	date 		= require('date-utils'),
-	fs 			= require('fs');
+	fs 			= require('fs'),
+	secret		= require('./secret.js');
 
-var filestore = knox.createClient({
-    key: 'AKIAICEJ3HEXPY5KB7OQ'
-  , secret: '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'
-  , bucket: 'tulipnoir'
-});
+var filestore = knox.createClient(secret.s3);
 
 mongo.connect(function(msg) {
 	if(msg == null)
@@ -26,7 +23,7 @@ exports.index = function index(req, res) {
 exports.menus = function menus(req, res) {
 
   	res.setHeader('Content-Type', 'application/pdf');
-	res.sendfile('menus/spring13/'+req.params.type+'.pdf');
+	res.sendfile('menus/summer13/'+req.params.type+'.pdf');
 }
 
 // admin page
@@ -83,21 +80,6 @@ exports.addSpecial = function(req, res) {
 };
 
 exports.photos = function(req, res) {
-	/*mongo.db.collection("photos", function(err, collection){
-		for(var i = 0; i < 32; i++) {
-			(function(i){ 
-				var obj = {
-					id: i,
-					file: "photo_"+i+".jpg",
-					comment: "none"
-				}
-				collection.insert(obj, function(err, docs){
-					if(err) throw err
-					res.send(docs)
-				});
-			})(i);
-		}
-	});*/
 	mongo.finder("photos", {}, function(docs) {
 		res.send(docs);
 	});
@@ -106,6 +88,7 @@ exports.photos = function(req, res) {
 exports.photo = function(req, res) {
 	// actually serve the photo here!!
 	res.setHeader('Content-Type', 'image/jpeg');
+	res.setHeader('Cache-Control', 'public, max-age=31536000');
 	filestore.getFile('/photos/photo_'+req.params.id+'.jpeg', function(err, data){
 	 	data.on('data', function(data) { res.write(data); });
     	data.on('end', function(chunk) { res.end(); });
@@ -115,6 +98,7 @@ exports.photo = function(req, res) {
 exports.photoBig = function(req, res) {
 	// actually serve the photo here!!
 	res.setHeader('Content-Type', 'image/jpeg');
+	res.setHeader('Cache-Control', 'public, max-age=31536000');
 	filestore.getFile('/photos/big/photo_'+req.params.id+'.jpeg', function(err, data){
 	 	data.on('data', function(data) { res.write(data); });
     	data.on('end', function(chunk) { res.end(); });
@@ -136,13 +120,37 @@ exports.feedback = function(req, res) {
 		email: "ottosipe@gmail.com, dina@tulipnoircafe.com",
 		reply: req.body.email
 	};
+
 	var info = req.body;
 	info.date = Date.today().toFormat("DDDD, MMMM D, YYYY");
 	email.send(to, info ,'feedback.jade', function(msg) { 
 		console.log(msg);
 		res.send("Thanks "+req.body.name+"! We value your opinion.")
 	});
+
 	mongo.db.collection("feedback", function(err, collection){
+		collection.insert(info, function(err, docs){
+			if(err) throw err
+		});
+	});
+};
+
+exports.apply = function(req, res) {
+	var to = {
+		subject: "Job App - Tulip Noir - " + req.body.name,
+		email: "ottosipe@gmail.com, dina@tulipnoircafe.com",
+		reply: req.body.email
+	};
+
+	var info = req.body;
+	info.date = Date.today().toFormat("DDDD, MMMM D, YYYY");
+	
+	email.send(to, info ,'application.jade', function(msg) { 
+		console.log(msg);
+		res.send("Thanks for your application, "+req.body.name+"!")
+	});
+
+	mongo.db.collection("job_apps", function(err, collection){
 		collection.insert(info, function(err, docs){
 			if(err) throw err
 		});

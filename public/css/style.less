@@ -64,6 +64,23 @@ a:hover {
 // big
 #big {
 	text-align: center;
+	background: transparent;
+	box-shadow: none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+	border: none;
+}
+
+#spinner {
+	width: 0px;
+	margin: 18% auto;
+}
+
+#big img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1000;
 }
 
 ////
@@ -122,7 +139,7 @@ a:hover {
 }
 // feedback
 
-.feedback textarea {
+.form-horizontal textarea {
 	width: 80%;
 	height: 100px;
 }
@@ -152,6 +169,19 @@ a:hover {
 	border: 1px black dashed;
 }
 
+input:focus:invalid:focus, 
+textarea:focus:invalid:focus, 
+select:focus:invalid:focus {
+	box-shadow: none;
+	color: #000;
+}
+
+label.control-label {
+	font-size: 1.3em;
+	margin-top: 10px;
+}
+
+
 // buttons and inputs
 .button, 
 input[type=button], 
@@ -178,7 +208,10 @@ button {
 input[type=button]:hover, 
 input[type=submit]:focus,
 input[type=text]:focus,
+input[type=tel]:focus,
 input[type=email]:focus,
+input[type=date]:focus,
+input[type=url]:focus,
 textarea:focus,
 button:hover {
     background-color: @gray;
@@ -202,6 +235,10 @@ textarea:-moz-placeholder {
 
 input[type=text],
 input[type=email],
+input[type=tel],
+input[type=date],
+input[type=url],
+select,
 textarea {
 	border-radius: 0px;
 	background-color: @color;
@@ -214,11 +251,12 @@ textarea {
 
 input[type=text]:focus,
 input[type=email]:focus,
+input[type=tel]:focus,
+input[type=date]:focus,
+input[type=url]:focus,
 textarea:focus {
     border: 0px;
     box-shadow: none;
     outline: none;
 }
-
-
 

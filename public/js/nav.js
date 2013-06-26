@@ -9,6 +9,7 @@ $(function() {
 		$($(this).attr("href")).show();
 		$(".navlink").removeClass("active");
 		$(this).addClass("active");
+
 	});
 
 	$(".navlink").hover(function(e){ // hover in

@@ -1,10 +1,23 @@
 h1 contact
 
 
-form.feedback
-	input(type="text", placeholder="name", name="name", required)
-	input(type="email", placeholder="email", name="email", required)
-	br
-	textarea(name="feedback", required, placeholder="say hello, ask a question, or let us know what you think. thanks!")
-	br
-	button(type="submit") send
+form.feedback.form-horizontal
+	.control-group
+		label.control-label(for="name") name:
+		.controls
+			input(type="text", placeholder="ex. Julia Child", name="name", required)
+
+	.control-group
+		label.control-label(for="email") email:
+		.controls
+			input(type="email", placeholder="ex. julia@food.com", name="email", required)
+				
+	.control-group
+		label.control-label(for="feedback") message:
+		.controls
+			textarea(name="feedback", required, placeholder="say hello, ask a question, or let us know what you think. thanks!")
+	
+	.control-group
+		.controls
+			button(type="submit") send
+	

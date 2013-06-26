@@ -25,7 +25,7 @@ app.get('/photo/:id/big', router.photoBig);
 app.post('/photo', router.addPhoto);
 
 app.post('/feedback', router.feedback);
-
+app.post('/apply', router.apply);
 // start the server
 http.createServer(app).listen(app.get('port'), function(){
   console.log(("Express server listening on port " + app.get('port')).rainbow);
