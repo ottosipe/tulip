@@ -23,7 +23,7 @@ exports.index = function index(req, res) {
 exports.menus = function menus(req, res) {
 
   	res.setHeader('Content-Type', 'application/pdf');
-	res.sendfile('menus/summer13/'+req.params.type+'.pdf');
+	res.sendfile('menus/autumn13/'+req.params.type+'.pdf');
 }
 
 // admin page

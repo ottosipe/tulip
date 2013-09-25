@@ -11,7 +11,7 @@ body {
   width: 90%;
 }
 a:hover {
-  color: #c8c8c8;
+  color: rgba(200, 200, 200, 0.3);
   text-decoration: none;
 }
 .social {
@@ -168,10 +168,10 @@ input[type=date]:focus,
 input[type=url]:focus,
 textarea:focus,
 button:hover {
-  background-color: #c8c8c8;
+  background-color: rgba(200, 200, 200, 0.3);
 }
 button:disabled {
-  background-color: #c8c8c8;
+  background-color: rgba(200, 200, 200, 0.3);
   color: #FFF;
 }
 input::-webkit-input-placeholder,
