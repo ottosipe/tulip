@@ -7,6 +7,7 @@ var mongo 		= require("./database.js"),
 	secret		= require('./secret.js');
 
 var filestore = knox.createClient(secret.s3);
+var MENU_BASE = 'menus/winter14/';
 
 mongo.connect(function(msg) {
 	if(msg == null)
@@ -23,7 +24,7 @@ exports.index = function index(req, res) {
 exports.menus = function menus(req, res) {
 
   	res.setHeader('Content-Type', 'application/pdf');
-	res.sendfile('menus/autumn13/'+req.params.type+'.pdf');
+	res.sendfile(MENU_BASE+req.params.type+'.pdf');
 }
 
 // admin page
