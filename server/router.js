@@ -7,7 +7,7 @@ var mongo 		= require("./database.js"),
 	secret		= require('./secret.js');
 
 var filestore = knox.createClient(secret.s3);
-var MENU_BASE = 'menus/winter14/';
+var MENU_BASE = 'menus/spring14/';
 
 mongo.connect(function(msg) {
 	if(msg == null)
