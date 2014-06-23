@@ -7,12 +7,12 @@ var mongo 		= require("./database.js"),
 	secret		= require('./secret.js');
 
 var filestore = knox.createClient(secret.s3);
-var MENU_BASE = 'menus/spring14/';
+var MENU_BASE = 'menus/summer14/';
 
 mongo.connect(function(msg) {
 	if(msg == null)
 		console.log("Mongo Connected!");
-	else 
+	else
 		console.log(msg);
 });
 
@@ -55,7 +55,7 @@ exports.addSpecial = function(req, res) {
 	if(req.body.type != undefined && req.body.type instanceof Array) {
 		for(x in req.body.type) {
 			var item = {
-				type: req.body.type[x], 
+				type: req.body.type[x],
 				desc: req.body.desc[x]
 			};
 			if (item.desc.length && item.type.length) {
@@ -64,7 +64,7 @@ exports.addSpecial = function(req, res) {
 		}
 	} else {
 		var item = {
-			type: req.body.type, 
+			type: req.body.type,
 			desc: req.body.desc
 		};
 		if (item.desc.length && item.type.length) {
@@ -124,7 +124,7 @@ exports.feedback = function(req, res) {
 
 	var info = req.body;
 	info.date = Date.today().toFormat("DDDD, MMMM D, YYYY");
-	email.send(to, info ,'feedback.jade', function(msg) { 
+	email.send(to, info ,'feedback.jade', function(msg) {
 		console.log(msg);
 		res.send("Thanks "+req.body.name+"! We value your opinion.")
 	});
@@ -145,8 +145,8 @@ exports.apply = function(req, res) {
 
 	var info = req.body;
 	info.date = Date.today().toFormat("DDDD, MMMM D, YYYY");
-	
-	email.send(to, info ,'application.jade', function(msg) { 
+
+	email.send(to, info ,'application.jade', function(msg) {
 		console.log(msg);
 		res.send("Thanks for your application, "+req.body.name+"!")
 	});
